@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+
+# 대용량 모델/라이브러리 제외
+app/src/main/assets/*.onnx
+app/src/main/assets/*.bin
+app/src/main/assets/*.param
+app/src/main/cpp/libs/**/*.a
