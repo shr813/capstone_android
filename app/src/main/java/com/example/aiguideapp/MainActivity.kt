@@ -141,7 +141,7 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
             )
             .build()
         val request = Request.Builder()
-            .url("http://10.0.2.2:5000/upload")
+            .url("http://192.168.1.4:5000/upload")
             .post(requestBody)
             .build()
         Thread {
@@ -151,11 +151,11 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
                 Log.d("UPLOAD", "서버 원응답: $raw")
                 if (response.isSuccessful) {
                     val json = JSONObject(raw)
-                    val transcription = json.optString("transcription", "").replace("\n", " ") //Whisper 텍스트
-                    val plan = json.optString("plan", "").replace("\n", " ") //GPT가 뽑은 JSON 문자열
+                    val target = json.optString("target", "")
+                    val destination = json.optString("destination", "")
                     runOnUiThread {
-                        if (transcription.isNotBlank()) speak("인식된 명령은: $transcription")
-                        if (plan.isNotBlank()) speak("플랜은: $plan")
+                        speak("타겟은: $target")
+                        if (destination.isNotBlank()) speak("목적지는: $destination")
                     }
                 } else {
                     runOnUiThread { speak("서버 에러가 발생했습니다.") }
